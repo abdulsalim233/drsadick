@@ -1,0 +1,11 @@
+Dear {{ name }},
+
+Thank you for reaching out through my official website.
+
+Subject: {{ subject }}
+Status: Received successfully. I will review your message and get back to you as soon as possible.
+
+Best regards,
+Surv. Dr. Abubakar Sadiq Mohammed (PhD)
+Lecturer & Professional Estate Surveyor (GhIS)
+Accra Technical University & KPCE, Ghana

@@ -1,0 +1,12 @@
+<!-- Floating WhatsApp Quick-Contact Widget -->
+{% if profile.whatsapp_number %}
+<a href="https://wa.me/{{ profile.whatsapp_number }}?text=Hello%20Surv.%20Dr.%20Abubakar%20Sadiq%20Mohammed,%20I%20am%20contacting%20you%20via%20your%20website." 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="whatsapp-widget" 
+   aria-label="Contact Dr. Abubakar Sadiq Mohammed on WhatsApp"
+   title="Chat directly on WhatsApp">
+   <i class="fa-brands fa-whatsapp" style="font-size: 1.35rem;"></i>
+   <span>WhatsApp</span>
+</a>
+{% endif %}

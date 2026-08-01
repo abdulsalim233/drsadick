@@ -1,0 +1,164 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django administration') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name" style="display: flex; align-items: center; gap: 0.75rem;">
+  <a href="{% url 'admin:index' %}" style="display: flex; align-items: center; gap: 0.75rem; color: #f8fafc; text-decoration: none; font-family: 'Outfit', 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem;">
+    <span style="background: linear-gradient(135deg, #f59e0b, #b45309); color: #fff; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px;">GhIS</span>
+    <span>Dr. Abubakar Sadiq Mohammed</span>
+    <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 500;">| Admin Portal</span>
+  </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0f172a;
+    --secondary: #1e293b;
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-family) !important;
+    background-color: #0f172a !important;
+    color: #cbd5e1 !important;
+  }
+
+  #header {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 12px 24px !important;
+  }
+
+  #header a:link, #header a:visited {
+    color: #f8fafc !important;
+  }
+
+  #header a:hover {
+    color: #f59e0b !important;
+  }
+
+  #user-tools {
+    font-size: 0.9rem !important;
+  }
+
+  .module {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+    margin-bottom: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .module caption, .module h2 {
+    background: linear-gradient(90deg, #1e293b, #334155) !important;
+    color: #f59e0b !important;
+    font-weight: 700 !important;
+    font-family: var(--font-family) !important;
+    font-size: 1.05rem !important;
+    padding: 12px 18px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  }
+
+  div.breadcrumbs {
+    background: #0f172a !important;
+    color: #94a3b8 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    font-size: 0.9rem !important;
+    padding: 12px 24px !important;
+  }
+
+  div.breadcrumbs a {
+    color: #f59e0b !important;
+  }
+
+  a:link, a:visited {
+    color: #f59e0b;
+  }
+
+  a:hover {
+    color: #fbbf24;
+  }
+
+  .button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    border: none !important;
+    padding: 9px 18px !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer !important;
+  }
+
+  .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35) !important;
+  }
+
+  .button.deletelink, a.deletelink {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+  }
+
+  #changelist table {
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+  }
+
+  #changelist table thead th {
+    background: #0f172a !important;
+    color: #94a3b8 !important;
+    font-weight: 700 !important;
+  }
+
+  #changelist table tbody tr:nth-child(even) {
+    background: rgba(15, 23, 42, 0.4) !important;
+  }
+
+  #changelist table tbody tr:hover {
+    background: rgba(245, 158, 11, 0.08) !important;
+  }
+
+  .form-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 14px 0 !important;
+  }
+
+  input[type=text], input[type=password], input[type=email], input[type=url], input[type=number], textarea, select {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #f8fafc !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    font-family: inherit !important;
+  }
+
+  input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus, textarea:focus, select:focus {
+    border-color: #f59e0b !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25) !important;
+  }
+
+  .submit-row {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    padding: 14px 20px !important;
+  }
+</style>
+{% endblock %}

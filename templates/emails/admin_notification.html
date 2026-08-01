@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Website Contact Form Submission</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .header { background: #0f172a; color: #ffffff; padding: 15px 20px; border-radius: 8px 8px 0 0; }
+        .details { margin: 20px 0; font-size: 15px; }
+        .msg-body { background: #f1f5f9; padding: 15px; border-left: 4px solid #3b82f6; border-radius: 4px; white-space: pre-wrap; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3 style="margin:0;">🔔 New Website Inquiry</h3>
+        </div>
+        <div class="details">
+            <p><strong>From:</strong> {{ name }} ({{ email }})</p>
+            <p><strong>Subject:</strong> {{ subject }}</p>
+            <p><strong>Date:</strong> {{ created_at }}</p>
+            <hr style="border:0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+            <p><strong>Message:</strong></p>
+            <div class="msg-body">{{ message }}</div>
+        </div>
+    </div>
+</body>
+</html>

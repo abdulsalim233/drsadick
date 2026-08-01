@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Publications & Research Studies | Surv. Dr. Abubakar Sadiq Mohammed{% endblock %}
+
+{% block content %}
+
+<section style="padding: 9rem 0 4rem 0; background: var(--bg-surface);">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <h1 class="section-title">Academic Publications & Research</h1>
+      <p class="section-subtitle" style="margin-bottom: 2rem;">
+        Explore published research papers, peer-reviewed journal articles, and systematic reviews across Facilities Management, Smart Buildings, and Real Estate Development.
+      </p>
+      
+      <!-- Search & Filter Controls -->
+      <form method="GET" action="{% url 'publication_list' %}" class="pub-filter-form">
+        <input type="text" name="q" value="{{ search_query }}" placeholder="Search paper title, author, abstract..." class="form-input" style="max-width: 380px;">
+        
+        <select name="category" class="form-input" style="max-width: 200px;">
+          <option value="">All Categories</option>
+          {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+          {% endfor %}
+        </select>
+
+        <select name="year" class="form-input" style="max-width: 140px;">
+          <option value="">All Years</option>
+          {% for yr in years %}
+            <option value="{{ yr }}" {% if selected_year|add:"0" == yr %}selected{% endif %}>{{ yr }}</option>
+          {% endfor %}
+        </select>
+
+        <button type="submit" class="btn-primary" style="padding: 0.85rem 1.25rem;">
+          Search & Filter
+        </button>
+        {% if search_query or selected_category or selected_year %}
+          <a href="{% url 'publication_list' %}" class="btn-secondary" style="padding: 0.85rem 1.25rem;">Clear Filters</a>
+        {% endif %}
+      </form>
+    </div>
+
+    <!-- Publications List Grid -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      {% for pub in publications %}
+      <div class="feature-card animate-on-scroll" style="height: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <span class="pub-badge">{{ pub.category }}</span>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); background: rgba(245, 158, 11, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--radius-full);">
+            Cited by {{ pub.citations_count }}
+          </span>
+        </div>
+
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.4;">
+          {{ pub.title }}
+        </h2>
+
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">
+          <strong>Authors:</strong> {{ pub.authors }} ({{ pub.year }})
+        </p>
+
+        {% if pub.journal_or_conference %}
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem; font-style: italic;">
+          <i class="fa-solid fa-book-open" style="margin-right: 0.4rem; color: var(--accent-gold);"></i> {{ pub.journal_or_conference }}
+        </p>
+        {% endif %}
+
+        {% if pub.abstract %}
+        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; background: rgba(15, 23, 42, 0.4); padding: 1rem; border-radius: var(--radius-sm);">
+          {{ pub.abstract }}
+        </p>
+        {% endif %}
+
+        <!-- Direct Links -->
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: auto;">
+          {% if pub.google_scholar_link %}
+          <a href="{{ pub.google_scholar_link }}" target="_blank" rel="noopener" class="card-read-more-btn">
+            Read on Google Scholar
+          </a>
+          {% endif %}
+          {% if pub.researchgate_link %}
+          <a href="{{ pub.researchgate_link }}" target="_blank" rel="noopener" class="card-read-more-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent-blue);">
+            Read on ResearchGate
+          </a>
+          {% endif %}
+          {% if pub.doi_link %}
+          <a href="{{ pub.doi_link }}" target="_blank" rel="noopener" class="card-read-more-btn" style="border-color: rgba(16, 185, 129, 0.4); color: var(--accent-green);">
+            View Article / DOI
+          </a>
+          {% endif %}
+          <button onclick="copyCitation('{{ pub.title|escapejs }}', '{{ pub.authors|escapejs }}', '{{ pub.year }}', '{{ pub.journal_or_conference|escapejs }}')" class="btn-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.85rem;">
+            <i class="fa-solid fa-copy" style="margin-right: 0.3rem;"></i> Copy Citation
+          </button>
+        </div>
+      </div>
+      {% empty %}
+      <div style="text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-md);">
+        <h3 style="color: var(--text-secondary); font-size: 1.2rem;">No publications matching your criteria were found.</h3>
+        <a href="{% url 'publication_list' %}" class="btn-primary" style="margin-top: 1.5rem;">Reset Search Filters</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination Controls (Rule 2 Database Optimization) -->
+    {% if is_paginated %}
+    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 3rem;">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_year %}&year={{ selected_year }}{% endif %}" class="btn-secondary">&laquo; Previous</a>
+      {% endif %}
+
+      <span style="display: inline-flex; align-items: center; padding: 0.5rem 1rem; color: var(--text-muted); font-size: 0.9rem;">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </span>
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_year %}&year={{ selected_year }}{% endif %}" class="btn-secondary">Next &raquo;</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

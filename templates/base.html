@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Surv. Dr. Abubakar Sadiq Mohammed (PhD) | Facilities Management & Real Estate Lecturer{% endblock %}</title>
+  
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description" content="Official academic portfolio of Surv. Dr. Abubakar Sadiq Mohammed (PhD), Lecturer in Facilities Management at Accra Technical University and GhIS Member (VESD–2599). Researching Smart Buildings, IoT in FM, Mosque Operations, and Sustainable Infrastructure.">
+  <meta name="keywords" content="Abubakar Sadiq Mohammed, Facilities Management Ghana, Estate Surveying, Accra Technical University, KNUST, Smart Building FM, Mosque Facilities Management, GhIS Surveyor, Real Estate Valuation">
+  <meta name="author" content="Dr. Abubakar Sadiq Mohammed">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+  <!-- Open Graph / Facebook / LinkedIn Social Share Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:title" content="Surv. Dr. Abubakar Sadiq Mohammed (PhD) - Academic & Professional Portfolio">
+  <meta property="og:description" content="Lecturer at Accra Technical University & Professional Estate Surveyor (GhIS). Discover research in Smart Facilities Management, IoT, and Property Science.">
+  <meta property="og:image" content="{% if profile.profile_image %}{{ profile.profile_image.url }}{% else %}{% static 'images/citations.jpg' %}{% endif %}">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Surv. Dr. Abubakar Sadiq Mohammed (PhD)">
+  <meta name="twitter:description" content="Lecturer in Facilities Management & Professional Estate Surveyor (GhIS Member: VESD – 2599).">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Global Design System CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  <!-- JSON-LD Structured Data Schema for High SEO Google Ranking -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abubakar Sadiq Mohammed",
+    "jobTitle": "Lecturer in Facilities Management",
+    "worksFor": {
+      "@type": "EducationalOrganization",
+      "name": "Accra Technical University"
+    },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "Kwame Nkrumah University of Science and Technology"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "name": "Kumasi Technical University"
+      }
+    ],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Ghana Institution of Surveyors",
+      "identifier": "VESD - 2599"
+    },
+    "sameAs": [
+      "{{ profile.google_scholar_url }}",
+      "{{ profile.researchgate_url }}",
+      "{{ profile.kpce_directory_url }}"
+    ],
+    "knowsAbout": [
+      "Facilities Management",
+      "Property Science",
+      "Real Estate Valuation",
+      "Smart Buildings and IoT",
+      "Religious Facilities Management",
+      "Disaster Preparedness in Education"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  {% include 'partials/_navbar.html' %}
+
+  <!-- Main Content -->
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'partials/_footer.html' %}
+
+  <!-- Floating WhatsApp Quick-Contact Widget -->
+  {% include 'partials/_whatsapp_btn.html' %}
+
+  <!-- Scripts -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/scroll-anim.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

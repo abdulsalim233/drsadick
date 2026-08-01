@@ -1,0 +1,23 @@
+{% load static %}
+<nav class="navbar" aria-label="Main Navigation">
+  <div class="container nav-container">
+    <a href="{% url 'home' %}" class="brand-logo" aria-label="Dr. Abubakar Sadiq Mohammed Portfolio">
+      <span class="brand-name-full">Dr. Abubakar Sadiq Mohammed</span>
+      <span class="brand-name-short">Dr. Abubakar Sadiq</span>
+      <span class="brand-badge">GhIS</span>
+    </a>
+
+    <ul class="nav-links" id="nav-links-menu">
+      <li><a href="{% url 'home' %}#about" class="nav-link">About</a></li>
+      <li><a href="{% url 'home' %}#research" class="nav-link">Research</a></li>
+      <li><a href="{% url 'publication_list' %}" class="nav-link">Publications</a></li>
+      <li><a href="{% url 'home' %}#experience" class="nav-link">Experience</a></li>
+      <li><a href="{% url 'home' %}#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme"><i class="fa-solid fa-sun"></i></button>
+      <button id="mobile-menu-toggle" class="mobile-nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Surv. Dr. Abubakar Sadiq Mohammed (PhD) | Official Academic Portfolio{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="animate-on-scroll">
+        <div class="hero-badge-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>{{ profile.ghis_number }}</span>
+        </div>
+        <h1 class="hero-title">
+          Surv. Dr. Abubakar<br><span>Sadiq Mohammed</span> <small style="font-size: 0.5em; color: var(--text-secondary);">(PhD)</small>
+        </h1>
+        <p class="hero-role">{{ profile.title }}</p>
+        <p class="hero-role" style="font-size: 1rem; color: var(--accent-gold); margin-top: -1rem; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-location-dot" style="margin-right: 0.4rem;"></i>{{ profile.department }} — {{ profile.institution }}
+        </p>
+        <p class="hero-bio">
+          {{ profile.bio }}
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            <span>Get in Touch</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="{% url 'publication_list' %}" class="btn-secondary">View Publications</a>
+          <a href="{{ profile.google_scholar_url }}" target="_blank" rel="noopener" class="btn-secondary" style="border-color: rgba(245, 158, 11, 0.4); color: var(--accent-gold);">
+            Google Scholar ({{ profile.citations_count }}+ Citations)
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile Image Frame -->
+      <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+        <div class="profile-card">
+          <div class="profile-img-wrap">
+            <img src="{% if profile.profile_image %}{{ profile.profile_image.url }}{% else %}{% static 'images/citations.jpg' %}{% endif %}" alt="Surv. Dr. Abubakar Sadiq Mohammed Profile Photo" loading="eager">
+          </div>
+          <div style="background: var(--bg-surface); padding: 1rem; text-align: center; border-top: 1px solid var(--border-color);">
+            <p style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">Dr. Abubakar Sadiq Mohammed</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Ph.D. Candidate (KNUST) | GhIS Professional Member</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics Ribbon -->
+    <div class="metrics-ribbon animate-on-scroll">
+      <div class="metric-card">
+        <div class="metric-value">{{ profile.citations_count }}+</div>
+        <div class="metric-label">Citations Indexed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">{{ total_publications_count }}+</div>
+        <div class="metric-label">Published Studies</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">GhIS</div>
+        <div class="metric-label">Certified Surveyor (VESD–2599)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">6</div>
+        <div class="metric-label">Languages Spoken</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About & Biography Section -->
+<section id="about" style="padding: 6rem 0; background: var(--bg-surface);">
+  <div class="container">
+    <div class="animate-on-scroll" style="text-align: center; margin-bottom: 3.5rem;">
+      <h2 class="section-title">Academic Biography & Expertise</h2>
+      <p class="section-subtitle">Combining academic rigor at Accra Technical University with professional surveying practice across Ghana.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+      <div class="animate-on-scroll" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: var(--radius-md);">
+        <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1rem;">Biography</h3>
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem;">
+          Surv. Dr. Abubakar Sadiq Mohammed is a dedicated Facilities and Real Estate Professional, Lecturer at Accra Technical University, and PhD Candidate in Land Management and Governance at KNUST.
+        </p>
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+          With broad expertise spanning soft and hard facilities management, real estate valuation, and institutional asset operations, he actively contributes to developing smart, resilient infrastructure across educational, religious, and healthcare facilities.
+        </p>
+      </div>
+
+      <div class="animate-on-scroll" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: var(--radius-md); transition-delay: 0.15s;">
+        <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1rem;">Multilingual Capability</h3>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem;">
+          Proficient in 6 local and international languages, enabling effective communication across community, academic, and professional channels:
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+          <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">English (Fluent)</span>
+          <span style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">Twi</span>
+          <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">Hausa</span>
+          <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">Arabic</span>
+          <span style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">Bono</span>
+          <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green); padding: 0.4rem 0.85rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem;">Gonja</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Focus Areas Section -->
+<section id="research" style="padding: 6rem 0;">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <h2 class="section-title">Core Research Focus Areas</h2>
+      <p class="section-subtitle">Driving innovation in smart building technologies, religious facility management, and sustainable real estate development.</p>
+    </div>
+
+    <div class="cards-grid">
+      {% for interest in research_interests %}
+      <div class="feature-card animate-on-scroll stagger-item">
+        <div class="card-icon-wrap">
+          {% if interest.icon_name == 'cpu' %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M20 15h2M20 9h2M2 15h2M2 9h2"/></svg>
+          {% elif interest.icon_name == 'mosque' %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 00-4 4v1a4 4 0 008 0V6a4 4 0 00-4-4z"/><path d="M4 10h16v11H4z"/><path d="M10 21v-4a2 2 0 014 0v4"/></svg>
+          {% elif interest.icon_name == 'users' %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          {% else %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8" y2="6"/><line x1="16" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="16" y1="11" x2="16" y2="11"/></svg>
+          {% endif %}
+        </div>
+        <h3 class="card-title">{{ interest.title }}</h3>
+        <p class="card-description">{{ interest.short_description }}</p>
+        
+        {% if interest.read_more_url %}
+        <a href="{{ interest.read_more_url }}" target="_blank" rel="noopener" class="card-read-more-btn">
+          <span>Read More on ResearchGate</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Featured Publications Section -->
+<section id="publications" style="padding: 6rem 0; background: var(--bg-surface);">
+  <div class="container">
+    <div class="animate-on-scroll" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;">
+      <div>
+        <h2 class="section-title">Featured Publications</h2>
+        <p class="section-subtitle" style="margin-bottom: 0;">Peer-reviewed academic research in Facilities Management & Estate Surveying.</p>
+      </div>
+      <a href="{% url 'publication_list' %}" class="btn-primary">View All Publications</a>
+    </div>
+
+    <div class="cards-grid">
+      {% for pub in featured_publications %}
+      <div class="feature-card animate-on-scroll stagger-item">
+        <span class="pub-badge">{{ pub.category }}</span>
+        <h3 class="card-title" style="font-size: 1.1rem; line-height: 1.4;">{{ pub.title }}</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><i class="fa-solid fa-user-pen" style="margin-right: 0.3rem;"></i> {{ pub.authors }} ({{ pub.year }})</p>
+        <p style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 1.25rem; font-weight: 600;">
+          <i class="fa-solid fa-book-open" style="margin-right: 0.3rem;"></i> {{ pub.journal_or_conference }} — Cited by {{ pub.citations_count }}
+        </p>
+
+        <!-- Read More / Direct Links -->
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto;">
+          {% if pub.google_scholar_link %}
+          <a href="{{ pub.google_scholar_link }}" target="_blank" rel="noopener" class="card-read-more-btn">Google Scholar</a>
+          {% endif %}
+          {% if pub.researchgate_link %}
+          <a href="{{ pub.researchgate_link }}" target="_blank" rel="noopener" class="card-read-more-btn" style="border-color: rgba(59, 130, 246, 0.4); color: var(--accent-blue);">ResearchGate</a>
+          {% endif %}
+          <button onclick="copyCitation('{{ pub.title|escapejs }}', '{{ pub.authors|escapejs }}', '{{ pub.year }}', '{{ pub.journal_or_conference|escapejs }}')" class="btn-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+            <i class="fa-solid fa-copy" style="margin-right: 0.3rem;"></i> Copy Citation
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Education & Experience Timeline -->
+<section id="experience" style="padding: 6rem 0;">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <h2 class="section-title">Education & Professional Background</h2>
+      <p class="section-subtitle">Academic qualifications and professional surveying engagements across Ghana.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem;">
+      <!-- Education List -->
+      <div class="animate-on-scroll">
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-graduation-cap"></i> Education & Qualifications
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          {% for edu in education_list %}
+          <div style="background: var(--bg-card); border-left: 4px solid var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm);">
+            <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">{{ edu.degree }}</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">{{ edu.institution }}</p>
+            <span style="font-size: 0.8rem; color: var(--accent-gold); background: rgba(245, 158, 11, 0.1); padding: 2px 8px; border-radius: 4px; display: inline-block; margin: 0.4rem 0;">{{ edu.period }}</span>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">{{ edu.details }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Experience List -->
+      <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-briefcase"></i> Academic & Professional Experience
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          {% for exp in academic_experience %}
+          <div style="background: var(--bg-card); border-left: 4px solid var(--accent-blue); padding: 1.25rem; border-radius: var(--radius-sm);">
+            <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">{{ exp.role }}</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">{{ exp.organization }}</p>
+            <span style="font-size: 0.8rem; color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 4px; display: inline-block; margin: 0.4rem 0;">{{ exp.period }}</span>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">{{ exp.details }}</p>
+          </div>
+          {% endfor %}
+
+          {% for exp in industry_experience %}
+          <div style="background: var(--bg-card); border-left: 4px solid var(--accent-green); padding: 1.25rem; border-radius: var(--radius-sm);">
+            <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">{{ exp.role }}</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 600;">{{ exp.organization }}</p>
+            <span style="font-size: 0.8rem; color: var(--accent-green); background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 4px; display: inline-block; margin: 0.4rem 0;">{{ exp.period }}</span>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.4rem;">{{ exp.details }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form & Direct Inquiries Section -->
+<section id="contact" style="padding: 6rem 0; background: var(--bg-surface);">
+  <div class="container">
+    <div class="animate-on-scroll" style="text-align: center; margin-bottom: 3.5rem;">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-subtitle">Reach out for academic collaborations, research inquiries, or professional estate surveying consultations.</p>
+    </div>
+
+    <div style="max-width: 750px; margin: 0 auto;">
+      <div class="contact-card animate-on-scroll">
+        
+        <!-- Feedback Alert Container -->
+        <div id="form-feedback" style="display: none; padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;"></div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form id="contact-form" action="{% url 'contact_submit' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label for="id_name" class="form-label">Your Name *</label>
+              <input type="text" id="id_name" name="name" class="form-input" placeholder="e.g. Prof. Kwame Mensah" required>
+            </div>
+            <div class="form-group">
+              <label for="id_email" class="form-label">Your Email Address *</label>
+              <input type="email" id="id_email" name="email" class="form-input" placeholder="e.g. kwame@university.edu.gh" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="id_subject" class="form-label">Subject</label>
+            <input type="text" id="id_subject" name="subject" class="form-input" placeholder="e.g. Research Collaboration / Valuation Inquiry">
+          </div>
+
+          <div class="form-group">
+            <label for="id_message" class="form-label">Message *</label>
+            <textarea id="id_message" name="message" rows="5" class="form-textarea" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            <span>Send Message</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

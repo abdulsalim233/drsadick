@@ -1,0 +1,8 @@
+New Website Inquiry
+
+From: {{ name }} ({{ email }})
+Subject: {{ subject }}
+Date: {{ created_at }}
+
+Message:
+{{ message }}
